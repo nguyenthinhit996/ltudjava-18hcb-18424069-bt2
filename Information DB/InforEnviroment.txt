@@ -1,0 +1,10 @@
+MySQL Server version : '5.7.27-0ubuntu0.18.04.1'
+MySQL Workbench Community (GPL) for Linux/Unix version 6.3.8 CE build 1228 (64 bit)
+
+Configuration Directory: /home/peter/.mysql/workbench
+Data Directory: /usr/share/mysql-workbench
+Cairo Version: 1.15.10
+OS: Linux 5.0.0-23-generic
+CPU: 4x Intel(R) Core(TM) i3-2375M CPU @ 1.50GHz (952.871MHz) - 7,68GiB RAM
+Distribution: Ubuntu 18.04.3 LTS
+
