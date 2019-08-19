@@ -13,5 +13,13 @@
             <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap1/ltudjava-18hcb-18424069-bt1/ExcerciseOne/src/excerciseone/DAL/StudentsDAL.java</file>
             <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap1/ltudjava-18hcb-18424069-bt1/ExcerciseOne/src/excerciseone/DAL/FileDAL.java</file>
         </group>
+        <group name="baitap2">
+            <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap2/ltudjava-18hcb-18424069-bt2/ExcerciseTwo/src/exercisetwoDTO/subject.hbm.xml</file>
+            <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap2/ltudjava-18hcb-18424069-bt2/ExcerciseTwo/src/excercisetwoDAL/ClassDAL.java</file>
+            <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap2/ltudjava-18hcb-18424069-bt2/ExcerciseTwo/src/exercisetwoDTO/class.hbm.xml</file>
+            <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap2/ltudjava-18hcb-18424069-bt2/ExcerciseTwo/src/hibernate.cfg.xml</file>
+            <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap2/ltudjava-18hcb-18424069-bt2/ExcerciseTwo/src/exercisetwoDTO/classsubject.hbm.xml</file>
+            <file>file:/home/peter/Desktop/hoc%20kì%202/Lập%20trình%20java/workspace/baitap2/ltudjava-18hcb-18424069-bt2/ExcerciseTwo/src/exercisetwoDTO/ClassSubjectDTO.java</file>
+        </group>
     </open-files>
 </project-private>
