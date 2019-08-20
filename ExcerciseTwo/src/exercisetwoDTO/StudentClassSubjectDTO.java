@@ -11,8 +11,8 @@ package exercisetwoDTO;
  */
 public class StudentClassSubjectDTO {
     private String id_student_classsubject;
-    private ClassSubjectDTO classsubject;
     private StudentDTO student;
+    private ClassSubjectDTO classSubjectDTO;
     private int pointmid;
     private int pointfinal;
     private int pointdifferent;
@@ -25,10 +25,10 @@ public class StudentClassSubjectDTO {
         this.id_student_classsubject = id_student_classsubject;
     }
 
-    public StudentClassSubjectDTO(String id_student_classsubject, ClassSubjectDTO classsubject, StudentDTO student, int pointmid, int pointfinal, int pointdifferent, int pointsum) {
+    public StudentClassSubjectDTO(String id_student_classsubject, StudentDTO student, ClassSubjectDTO classSubjectDTO, int pointmid, int pointfinal, int pointdifferent, int pointsum) {
         this.id_student_classsubject = id_student_classsubject;
-        this.classsubject = classsubject;
         this.student = student;
+        this.classSubjectDTO = classSubjectDTO;
         this.pointmid = pointmid;
         this.pointfinal = pointfinal;
         this.pointdifferent = pointdifferent;
@@ -50,20 +50,6 @@ public class StudentClassSubjectDTO {
     }
 
     /**
-     * @return the classsubject
-     */
-    public ClassSubjectDTO getClasssubject() {
-        return classsubject;
-    }
-
-    /**
-     * @param classsubject the classsubject to set
-     */
-    public void setClasssubject(ClassSubjectDTO classsubject) {
-        this.classsubject = classsubject;
-    }
-
-    /**
      * @return the student
      */
     public StudentDTO getStudent() {
@@ -75,6 +61,20 @@ public class StudentClassSubjectDTO {
      */
     public void setStudent(StudentDTO student) {
         this.student = student;
+    }
+
+    /**
+     * @return the classSubjectDTO
+     */
+    public ClassSubjectDTO getClassSubjectDTO() {
+        return classSubjectDTO;
+    }
+
+    /**
+     * @param classSubjectDTO the classSubjectDTO to set
+     */
+    public void setClassSubjectDTO(ClassSubjectDTO classSubjectDTO) {
+        this.classSubjectDTO = classSubjectDTO;
     }
 
     /**

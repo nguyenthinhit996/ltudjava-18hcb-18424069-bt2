@@ -114,6 +114,7 @@ CREATE TABLE `dbclass` (
 
 LOCK TABLES `dbclass` WRITE;
 /*!40000 ALTER TABLE `dbclass` DISABLE KEYS */;
+INSERT INTO `dbclass` VALUES ('12sdas','sdfdsf'),('19HB','lớp chất lượng cao'),('2343','srwdfdsf');
 /*!40000 ALTER TABLE `dbclass` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,8 +153,7 @@ DROP TABLE IF EXISTS `dbregistrypk`;
 CREATE TABLE `dbregistrypk` (
   `iddbregistrypk` int(11) NOT NULL AUTO_INCREMENT,
   `idstudent` varchar(10) DEFAULT NULL,
-  `namestudent` varchar(45) DEFAULT NULL,
-  `namesubject` varchar(45) DEFAULT NULL,
+  `idsubject` varchar(10) DEFAULT NULL,
   `namepoint` varchar(45) DEFAULT NULL,
   `hopepoint` int(11) DEFAULT NULL,
   `becauses` varchar(200) DEFAULT NULL,
@@ -229,4 +229,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-08-15 23:14:17
+-- Dump completed on 2019-08-20 22:13:57
