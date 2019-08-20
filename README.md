@@ -1,6 +1,8 @@
 # ltudjava-18hcb-18424069-bt2
 Bài tập 2 : Xây dựng một ứng dụng Swing + hibernate + mysql/postgres:
     
+    Version Hibernate 4.3.x
+    Version Log4j 1.2
     Mysql Server: 5.7
     Product Version: NetBeans IDE 8.2 (Build 201705191307)
     Updates: NetBeans IDE is updated to version NetBeans 8.2 Patch 2
