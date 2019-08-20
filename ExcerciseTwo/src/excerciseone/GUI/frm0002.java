@@ -5,16 +5,9 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.BLL.Frm0002BLL;
-import excerciseone.BLL.Common;
-import excerciseone.DAL.FileDAL;
-import excerciseone.DAL.SubjectsWithClassroomDAL;
-import excerciseone.DTO.AccountSchoolDTO;
-import excerciseone.DTO.ClassRoomDTO;
-import excerciseone.DTO.StudentsDTO;
-import excerciseone.DTO.StudentsWithPointDTO;
-import excerciseone.DTO.SubjectsDTO;
-import excerciseone.DTO.SubjectsWithClassroomDTO;
+ 
+import excercisetwoBLL.Common;
+import exercisetwoDTO.AccountDTO;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +32,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm0002 extends javax.swing.JFrame {
     
-    private AccountSchoolDTO accurent;
+    private AccountDTO accurent;
     
     /**
      * Creates new form frm0002
@@ -1165,19 +1158,7 @@ public class frm0002 extends javax.swing.JFrame {
     private javax.swing.JMenuItem viewstudentsubject;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the accurent
-     */
-    public AccountSchoolDTO getAccurent() {
-        return accurent;
-    }
-
-    /**
-     * @param accurent the accurent to set
-     */
-    public void setAccurent(AccountSchoolDTO accurent) {
-        this.accurent = accurent;
-    }
+     
     
     void createContent(){
         createCombox();
@@ -1855,5 +1836,19 @@ public class frm0002 extends javax.swing.JFrame {
      */
     public void setViewstudentsubject(javax.swing.JMenuItem viewstudentsubject) {
         this.viewstudentsubject = viewstudentsubject;
+    }
+
+    /**
+     * @return the accurent
+     */
+    public AccountDTO getAccurent() {
+        return accurent;
+    }
+
+    /**
+     * @param accurent the accurent to set
+     */
+    public void setAccurent(AccountDTO accurent) {
+        this.accurent = accurent;
     }
 }

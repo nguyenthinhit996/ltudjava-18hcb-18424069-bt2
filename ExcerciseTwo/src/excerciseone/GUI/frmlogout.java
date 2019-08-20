@@ -5,7 +5,7 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.DTO.AccountSchoolDTO;
+import exercisetwoDTO.AccountDTO;
 import javax.swing.JFrame;
 
 /**
@@ -13,7 +13,7 @@ import javax.swing.JFrame;
  * @author peter
  */
 public class frmlogout extends javax.swing.JFrame {
-    private AccountSchoolDTO accountSchool ;
+    private AccountDTO accountSchool ;
     private frm0002 frm0002s;
     private frm0003 frm0003s;
     
@@ -166,7 +166,7 @@ public class frmlogout extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        UserName.setText(accountSchool.getNameshow());
+        UserName.setText(accountSchool.getNameview());
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -224,19 +224,7 @@ public class frmlogout extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelChangepass1;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the accountSchool
-     */
-    public AccountSchoolDTO getAccountSchool() {
-        return accountSchool;
-    }
-
-    /**
-     * @param accountSchool the accountSchool to set
-     */
-    public void setAccountSchool(AccountSchoolDTO accountSchool) {
-        this.accountSchool = accountSchool;
-    }
+     
 
     /**
      * @return the frm0002s

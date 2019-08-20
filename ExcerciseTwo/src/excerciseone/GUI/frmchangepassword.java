@@ -5,8 +5,8 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.BLL.Common;
-import excerciseone.DTO.AccountSchoolDTO;
+ 
+import exercisetwoDTO.AccountDTO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class frmchangepassword extends javax.swing.JFrame {
     
-    private AccountSchoolDTO accountschool;
+    private AccountDTO accountschool;
     private frm0002 frm0002s;
     private frm0003 frm0003s;
     
@@ -228,10 +228,10 @@ public class frmchangepassword extends javax.swing.JFrame {
         // TODO add your handling code here:
           if(frm0002s != null){
             frm0002s.setVisible(true);
-            frm0002s.setAccurent(accountschool);
+            frm0002s.setAccurent(getAccountschool());
         }else{
             frm0003s.setVisible(true);
-            frm0003s.setAccurent(accountschool);
+            frm0003s.setAccurent(getAccountschool());
         } 
     }//GEN-LAST:event_formWindowClosed
 
@@ -256,11 +256,11 @@ public class frmchangepassword extends javax.swing.JFrame {
         }
         if(txtpassnew.getText().equals(txtpassagain.getText())){
             Common com= new Common();
-            if(com.changePassword(accountschool,txtpasswordold.getText(), txtpassnew.getText())){
+            if(com.changePassword(get,txtpasswordold.getText(), txtpassnew.getText())){
                 messageChangepass.setForeground(Color.GREEN);
                 messageChangepass.setVisible(true);
                 messageChangepass.setText("Success change password");
-                accountschool.setPassword(txtpassnew.getText());
+                getAccountschool().setPassword(txtpassnew.getText());
                 txtpassagain.setText("");
                 txtpassnew.setText("");
                 txtpasswordold.setText("");
@@ -327,19 +327,7 @@ public class frmchangepassword extends javax.swing.JFrame {
     private java.awt.TextField txtpasswordold;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the accountschool
-     */
-    public AccountSchoolDTO getAccountschool() {
-        return accountschool;
-    }
-
-    /**
-     * @param accountschool the accountschool to set
-     */
-    public void setAccountschool(AccountSchoolDTO accountschool) {
-        this.accountschool = accountschool;
-    }
+     
 
     /**
      * @return the frm0002s
@@ -367,6 +355,20 @@ public class frmchangepassword extends javax.swing.JFrame {
      */
     public void setFrm0003s(frm0003 frm0003s) {
         this.frm0003s = frm0003s;
+    }
+
+    /**
+     * @return the accountschool
+     */
+    public AccountDTO getAccountschool() {
+        return accountschool;
+    }
+
+    /**
+     * @param accountschool the accountschool to set
+     */
+    public void setAccountschool(AccountDTO accountschool) {
+        this.accountschool = accountschool;
     }
 
     

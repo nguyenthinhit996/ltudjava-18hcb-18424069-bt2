@@ -5,10 +5,9 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.BLL.Common;
-import excerciseone.BLL.Frm0003BLL;
-import excerciseone.DTO.AccountSchoolDTO;
-import excerciseone.DTO.StudentsWithPointDTO;
+ 
+import excercisetwoBLL.Common;
+import exercisetwoDTO.AccountDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -23,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frm0003 extends javax.swing.JFrame {
 
-    private AccountSchoolDTO accurent;
+    private AccountDTO accurent;
     
     /**
      * Creates new form frm0002
@@ -214,7 +213,7 @@ public class frm0003 extends javax.swing.JFrame {
             };
             Timer t = new Timer(1000, updateClockAction);
             t.start();
-            username.setText(accurent.getNameshow());
+            username.setText(accurent.getNameview());
             
             
             Frm0003BLL frm3= new Frm0003BLL();
@@ -334,14 +333,14 @@ public class frm0003 extends javax.swing.JFrame {
     /**
      * @return the accurent
      */
-    public AccountSchoolDTO getAccurent() {
+    public AccountDTO getAccurent() {
         return accurent;
     }
 
     /**
      * @param accurent the accurent to set
      */
-    public void setAccurent(AccountSchoolDTO accurent) {
+    public void setAccurent(AccountDTO accurent) {
         this.accurent = accurent;
     }
 }

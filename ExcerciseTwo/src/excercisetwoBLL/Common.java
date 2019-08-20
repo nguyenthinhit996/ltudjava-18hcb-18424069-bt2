@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package excerciseone.BLL;
+package excercisetwoBLL;
 
-import excerciseone.DAL.AccountSchoolDAL;
-import excerciseone.DAL.FileDAL;
-import excerciseone.DTO.AccountSchoolDTO;
+//import excerciseone.DAL.AccountSchoolDAL;
+//import excerciseone.DAL.FileDAL;
+//import excerciseone.DTO.AccountSchoolDTO;
+import excercisetwoDAL.AccountDAL;
+import exercisetwoDTO.AccountDTO;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import org.apache.commons.lang3.StringUtils;
@@ -27,22 +28,22 @@ public class Common {
     }
     
      
-      public boolean changePassword(AccountSchoolDTO acc,String passold,String passnew){
-        if(StringUtils.isNotBlank(passold) && StringUtils.isNotBlank(passnew)){
-            if(acc.getPassword().equals(passold)){
-                AccountSchoolDAL accDAL= new AccountSchoolDAL();
-                LinkedList<AccountSchoolDTO> in=accDAL.getAllAccount();
-                for(int i=0;i<in.size();i++){
-                    if(acc.getNamelogin().equals(in.get(i).getNamelogin()) 
-                            && acc.getPassword().equals(in.get(i).getPassword())){
-                        in.get(i).setPassword(passnew);
-                    }
-                }
-                
-                accDAL.writeAllAccount(in);
-                return true;
-            }
-        }
+      public boolean changePassword(AccountDTO acc,String passold,String passnew){
+//        if(StringUtils.isNotBlank(passold) && StringUtils.isNotBlank(passnew)){
+//            if(acc.getPass().equals(passold)){
+//                AccountDAL accDAL= new AccountDAL();
+//                LinkedList<AccountSchoolDTO> in=accDAL.getAllAccount();
+//                for(int i=0;i<in.size();i++){
+//                    if(acc.getNamelogin().equals(in.get(i).getNamelogin()) 
+//                            && acc.getPassword().equals(in.get(i).getPassword())){
+//                        in.get(i).setPassword(passnew);
+//                    }
+//                }
+//                
+//                accDAL.writeAllAccount(in);
+//                return true;
+//            }
+//        }
         return false;
     }
     

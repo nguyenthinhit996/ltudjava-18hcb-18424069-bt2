@@ -5,10 +5,9 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.BLL.Frm0001BLL;
-import excerciseone.DTO.AccountSchoolDTO;
+import excercisetwoBLL.frm0001BLL;
+import exercisetwoDTO.AccountDTO;
 import java.awt.event.KeyEvent;
-import java.io.File;
 
 /**
  *
@@ -224,12 +223,12 @@ public class frm0001 extends javax.swing.JFrame {
        labelerrorlogin.setVisible(false);
        String name=txtnamelogin.getText();
        String pass=txtpasslogin.getText();
-       Frm0001BLL bLLfrm0001;
-        bLLfrm0001 = new Frm0001BLL(name, pass);
-       AccountSchoolDTO acc=bLLfrm0001.checkLogin();
-       if(acc != null){
+       frm0001BLL.setName(name);
+       frm0001BLL.setPass(pass);
+       AccountDTO acc=frm0001BLL.checkLogin();
+       if(acc != null && acc.getIdacc() != null){
            
-           if(acc.getNamelogin().equals("giaovu")){
+           if(acc.getIdacc().equals("giaovu")){
                // giao vu
                 frm0002 frmgiaovu= new frm0002();
                 frmgiaovu.setAccurent(acc);
