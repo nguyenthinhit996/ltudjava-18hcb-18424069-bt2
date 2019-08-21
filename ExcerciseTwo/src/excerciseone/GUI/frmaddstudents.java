@@ -6,6 +6,9 @@
 package excerciseone.GUI;
 
  
+import excercisetwoBLL.Frm0002BLL;
+import exercisetwoDTO.ClassDTO;
+import exercisetwoDTO.StudentDTO;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.Map;
@@ -236,15 +239,18 @@ public class frmaddstudents extends javax.swing.JFrame {
             cbxsexaddstudent.getSelectedItem().toString(),
             txtidentityaddstudent.getText()
         };
-        StudentsDTO stu= new StudentsDTO(ds);
-        Frm0002BLL.getAllClassRoom();
-        LinkedList<ClassRoomDTO> colClassRooms=Frm0002BLL.getColClassRoom();
-        for(ClassRoomDTO i:colClassRooms){
-            if(i.getNameroom().equals(cbxallclassroom.getSelectedItem().toString())){
-                i.getCollectionSTU().add(stu);
-                Frm0002BLL fr= new Frm0002BLL();
-                boolean ff= fr.writeStudentsClass(i);
-                if(ff){
+        StudentDTO stu= new StudentDTO();
+        stu.setIdstudent(ds[0]);
+        stu.setNamestudent(ds[1]);
+        stu.setSex(ds[2]);
+        stu.setIdentity(Integer.valueOf(ds[3]));
+        stu.setClassdto(new ClassDTO(cbxallclassroom.getSelectedItem().toString()));
+        Frm0002BLL frm0002BLL = new Frm0002BLL();
+        LinkedList<StudentDTO> colClassRooms=(LinkedList<StudentDTO>) 
+        frm0002BLL.getAllStudentByIdClass(cbxallclassroom.getSelectedItem().toString());
+        colClassRooms.add(stu);
+        boolean res=frm0002BLL.writeStudent(colClassRooms);
+                if(res){
                     labelerror.setVisible(true);
                     labelerror.setText("Save success Student");
                     labelerror.setForeground(Color.BLUE);
@@ -257,9 +263,6 @@ public class frmaddstudents extends javax.swing.JFrame {
                     labelerror.setText("Error Not Save !!! ");
                     labelerror.setVisible(true);
                 }
-                return;
-            }
-        }
     }//GEN-LAST:event_btnokaddstudentMouseClicked
 
     private void btncanceladdstudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncanceladdstudentMouseClicked

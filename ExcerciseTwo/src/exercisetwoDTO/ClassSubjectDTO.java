@@ -13,6 +13,7 @@ public class ClassSubjectDTO {
     private String id_class_sub;
     private ClassDTO classdto;
     private SubjectDTO subjectdto;
+    private String room;
 
     public ClassSubjectDTO() {
     }
@@ -21,10 +22,11 @@ public class ClassSubjectDTO {
         this.id_class_sub = id_class_sub;
     }
 
-    public ClassSubjectDTO(String id_class_sub, ClassDTO classdto, SubjectDTO subjectdto) {
+    public ClassSubjectDTO(String id_class_sub, ClassDTO classdto, SubjectDTO subjectdto, String room) {
         this.id_class_sub = id_class_sub;
         this.classdto = classdto;
         this.subjectdto = subjectdto;
+        this.room = room;
     }
 
     /**
@@ -67,6 +69,20 @@ public class ClassSubjectDTO {
      */
     public void setSubjectdto(SubjectDTO subjectdto) {
         this.subjectdto = subjectdto;
+    }
+
+    /**
+     * @return the room
+     */
+    public String getRoom() {
+        return room;
+    }
+
+    /**
+     * @param room the room to set
+     */
+    public void setRoom(String room) {
+        this.room = room;
     }
     
 }

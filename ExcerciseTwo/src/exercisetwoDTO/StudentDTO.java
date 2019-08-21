@@ -11,12 +11,13 @@ import java.io.Serializable;
  *
  * @author peter
  */
-public class StudentDTO implements Serializable{
+public class StudentDTO implements Serializable,Comparable<StudentDTO>{
     private String idstudent;
     private String namestudent;
     private String sex;
     private int identity;
-
+    private ClassDTO classdto;
+    
     public StudentDTO() {
     }
 
@@ -32,7 +33,7 @@ public class StudentDTO implements Serializable{
         this.classdto = classdto;
     }
     
-    private ClassDTO classdto;
+   
 
     /**
      * @return the idstudent
@@ -102,6 +103,11 @@ public class StudentDTO implements Serializable{
      */
     public void setClassdto(ClassDTO classdto) {
         this.classdto = classdto;
+    }
+
+    @Override
+    public int compareTo(StudentDTO o) {
+         return this.idstudent.compareTo(o.idstudent);
     }
     
     

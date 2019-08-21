@@ -7,7 +7,12 @@ package excerciseone.GUI;
 
  
 import excercisetwoBLL.Common;
+import excercisetwoBLL.FileDAL;
+import excercisetwoBLL.Frm0002BLL;
 import exercisetwoDTO.AccountDTO;
+import exercisetwoDTO.ClassSubjectDTO;
+import exercisetwoDTO.StudentDTO;
+import exercisetwoDTO.SubjectDTO;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -579,7 +585,7 @@ public class frm0002 extends javax.swing.JFrame {
             Timer t = new Timer(1000, updateClockAction);
             t.start();
             
-            getUsername().setText(getAccurent().getNameshow());
+            getUsername().setText(getAccurent().getNameview());
             
 //            Thread abc= new Thread(new Runnable() {
 //                @Override
@@ -657,7 +663,6 @@ public class frm0002 extends javax.swing.JFrame {
         jFileChooserImport.setApproveButtonText("Open");
         int status = jFileChooserImport.showSaveDialog(jFileChooserImport);
         
-        boolean statusimporterr=false;
         if (status == JFileChooser.APPROVE_OPTION) {
           File selectedFile = jFileChooserImport.getSelectedFile();
           System.out.println(selectedFile.getPath());
@@ -669,22 +674,17 @@ public class frm0002 extends javax.swing.JFrame {
                return ;
            }
            Frm0002BLL bll0002= new Frm0002BLL();
-           statusimporterr =bll0002.importStudentsClass(selectedFile.getPath());
-           if(statusimporterr){
+           List<StudentDTO> in =bll0002.importStudentsClass(selectedFile.getPath());
+           if(in == null){
                //error
                frmerror er= new frmerror();
                er.setStrError(" Has Error when import Students CLass !");
                er.setVisible(true);
            }else{
                // view student class
-               Frm0002BLL frm0002bll = new Frm0002BLL();
-               Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-                getCbxstudentclass().removeAllItems();
-               while(in.hasNext()){
-                    ClassRoomDTO ob=in.next();                   
-                    getIntoTableStudentClass(ob.getCollectionSTU());
-                    getCbxstudentclass().addItem(ob.getNameroom());
-               }
+                getCbxstudentclass().removeAllItems();              
+                getIntoTableStudentClass(in);
+                getCbxstudentclass().addItem(in.get(0).getClassdto().getIdclass());
                //All Students Class:
                 getLabelviewstudentclass().setText("Students is Imported:");
                  getjScrollPane2().getVerticalScrollBar().setValue(0);
@@ -701,29 +701,20 @@ public class frm0002 extends javax.swing.JFrame {
     private void cbxstudentclassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxstudentclassItemStateChanged
         // TODO add your handling code here:
         if(cbxstudentclass.getSelectedItem() !=  null){
+            Frm0002BLL frm0002BLL = new Frm0002BLL();
             String nameclass=getCbxstudentclass().getSelectedItem().toString();
-            Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-            while(in.hasNext()){
-                ClassRoomDTO ob=in.next(); 
-                if(ob.getNameroom().equals(nameclass)){
-                   getIntoTableStudentClass(ob.getCollectionSTU());
-                    getjScrollPane2().getVerticalScrollBar().setValue(0);
-                }
-            }
+            List<StudentDTO> in = frm0002BLL.getAllStudentByIdClass(nameclass);
+            getIntoTableStudentClass(in);
+            getjScrollPane2().getVerticalScrollBar().setValue(0);
         }
     }//GEN-LAST:event_cbxstudentclassItemStateChanged
 
     public void loadstudentclass(){
         if(cbxstudentclass.getSelectedItem() !=  null){
-            String nameclass=getCbxstudentclass().getSelectedItem().toString();
-            Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-            while(in.hasNext()){
-                ClassRoomDTO ob=in.next(); 
-                if(ob.getNameroom().equals(nameclass)){
-                   getIntoTableStudentClass(ob.getCollectionSTU());
-                    getjScrollPane2().getVerticalScrollBar().setValue(0);
-                }
-            }
+           Frm0002BLL bll0002= new Frm0002BLL();
+           List<StudentDTO> in =bll0002.getAllStudent();
+           getIntoTableStudentClass(in);
+           getjScrollPane2().getVerticalScrollBar().setValue(0);
         }
     }
     
@@ -731,13 +722,9 @@ public class frm0002 extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cbxscheduleclass.getSelectedItem() !=  null){
             String nameclass=getCbxscheduleclass().getSelectedItem().toString();
-            Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-            while(in.hasNext()){
-                ClassRoomDTO ob=in.next(); 
-                if(ob.getNameroom().equals(nameclass)){
-                   getIntoTableScheduleClass(ob.getCollectionSUB());
-                }
-            }
+            Frm0002BLL frm0002BLL = new Frm0002BLL();
+            List<ClassSubjectDTO> ds= frm0002BLL.getAllScheduleByIdClass(nameclass);
+            getIntoTableScheduleClass(ds);  
         }
     }//GEN-LAST:event_cbxscheduleclassItemStateChanged
 
@@ -787,18 +774,9 @@ public class frm0002 extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmaddstudents addstudent=new frmaddstudents();
         
-        Frm0002BLL.getAllClassRoom();
-        LinkedList<ClassRoomDTO> colcr=Frm0002BLL.getColClassRoom();
-        Iterator<ClassRoomDTO> in=colcr.iterator();
-        Map<String,String> col=new HashMap<>();
-        while(in.hasNext()){
-            ClassRoomDTO i= in.next();
-            Collections.sort(i.getCollectionSTU());
-            long l=Long.valueOf(i.getCollectionSTU().getLast().getMssv()) +1;
-            col.put(i.getNameroom(), String.valueOf(l));
-        }
+        Frm0002BLL frm0002BLL = new Frm0002BLL();
         addstudent.setFrm0002s(this);
-        addstudent.setMapmaxmssvclass(col);
+        addstudent.setMapmaxmssvclass(frm0002BLL.getMapIdMaxStudentEachClass());
         addstudent.setVisible(true);
     }//GEN-LAST:event_managestudentclassActionPerformed
 
@@ -1188,18 +1166,18 @@ public class frm0002 extends javax.swing.JFrame {
         }
     }
     
-    void getIntoTableStudentClass(LinkedList<StudentsDTO> col){
+    void getIntoTableStudentClass(List<StudentDTO> col){
         DefaultTableModel model=(DefaultTableModel) getTablestudentclass().getModel();
         model.setRowCount(0);
         if(col!=null){
-            Iterator<StudentsDTO> in= col.iterator();
+            Iterator<StudentDTO> in= col.iterator();
             int i=1;
             while(in.hasNext()){
-                StudentsDTO stu=in.next();
+                StudentDTO stu=in.next();
                 Vector vt=new Vector();
                 vt.add(i++);
-                vt.add(stu.getMssv());
-                vt.add(stu.getName());
+                vt.add(stu.getIdentity());
+                vt.add(stu.getNamestudent());
                 vt.add(stu.getSex());
                 vt.add(stu.getIdentity());
                 model.addRow(vt);
@@ -1208,21 +1186,21 @@ public class frm0002 extends javax.swing.JFrame {
         
     }
     
-    void getIntoTableScheduleClass(LinkedList<SubjectsDTO> col){
+    void getIntoTableScheduleClass(List<ClassSubjectDTO> col){
         DefaultTableModel model=(DefaultTableModel) getTablescheduleclass().getModel();
         model.setRowCount(0);
         if(col == null){
             return;
         }
-        Iterator<SubjectsDTO> in= col.iterator();
+        Iterator<ClassSubjectDTO> in= col.iterator();
         int i=1;
         while(in.hasNext()){
-            SubjectsDTO stu=in.next();
+            ClassSubjectDTO stu=in.next();
             Vector vt=new Vector();
             vt.add(i++);
-            vt.add(stu.getCodesubject());
-            vt.add(stu.getNamesubject());
-            vt.add(stu.getRoomstudy());
+            vt.add(stu.getSubjectdto().getIdsubject());
+            vt.add(stu.getSubjectdto().getNamesubject());
+            vt.add(stu.getRoom());
             model.addRow(vt);
         }
     }

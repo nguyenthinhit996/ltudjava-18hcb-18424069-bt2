@@ -13,11 +13,11 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author peter
  */
-public class frm0001BLL {
+public class Frm0001BLL {
     private static String name;
     private static String pass;
 
-    public frm0001BLL() {
+    public Frm0001BLL() {
     }
  
     

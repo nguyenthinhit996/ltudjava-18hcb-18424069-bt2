@@ -54,6 +54,8 @@ Contributor(s):
         fetch="join" lazy="false" cascade="save-update,delete">
           <column length="10" name="nameidsub" unique="true"/>
       </many-to-one>
-      
+      <property name="room" type="string">
+          <column length="45" name="room"/>
+      </property>
   </class>
 </hibernate-mapping>

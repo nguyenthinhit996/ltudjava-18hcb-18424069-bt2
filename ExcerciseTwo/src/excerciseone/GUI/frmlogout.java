@@ -166,7 +166,7 @@ public class frmlogout extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        UserName.setText(accountSchool.getNameview());
+        UserName.setText(getAccountSchool().getNameview());
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
@@ -252,5 +252,19 @@ public class frmlogout extends javax.swing.JFrame {
      */
     public void setFrm0003s(frm0003 frm0003s) {
         this.frm0003s = frm0003s;
+    }
+
+    /**
+     * @return the accountSchool
+     */
+    public AccountDTO getAccountSchool() {
+        return accountSchool;
+    }
+
+    /**
+     * @param accountSchool the accountSchool to set
+     */
+    public void setAccountSchool(AccountDTO accountSchool) {
+        this.accountSchool = accountSchool;
     }
 }
