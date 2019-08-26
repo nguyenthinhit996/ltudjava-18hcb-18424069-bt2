@@ -7,7 +7,9 @@ package excerciseone.GUI;
 
  
 import excercisetwoBLL.Common;
+import excercisetwoBLL.Frm0003BLL;
 import exercisetwoDTO.AccountDTO;
+import exercisetwoDTO.StudentClassSubjectDTO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -217,7 +219,7 @@ public class frm0003 extends javax.swing.JFrame {
             
             
             Frm0003BLL frm3= new Frm0003BLL();
-            frm3.getAllPointOfStudent(this.accurent.getNamelogin());
+            frm3.getAllPointOfStudent(this.accurent.getIdacc());
             cbxpointsubject.removeAllItems();
             for(Map.Entry i : frm3.getPointstudent().entrySet()){
                 cbxpointsubject.addItem(i.getKey().toString());
@@ -260,16 +262,16 @@ public class frm0003 extends javax.swing.JFrame {
               mo.setRowCount(0);
                 for(Map.Entry i : frm3.getPointstudent().entrySet()){
                     if(cbxpointsubject.getSelectedItem().toString().equals(i.getKey())){
-                        StudentsWithPointDTO ss=(StudentsWithPointDTO) i.getValue();
+                        StudentClassSubjectDTO ss=(StudentClassSubjectDTO) i.getValue();
                         Vector as= new Vector();
                         as.add(1);
-                        as.add(ss.getMssv());
-                        as.add(ss.getNamestudent());
+                        as.add(ss.getStudent().getIdstudent());
+                        as.add(ss.getStudent().getIdstudent());
                         as.add(ss.getPointmid());
                         as.add(ss.getPointfinal());
-                        as.add(ss.getPointdifference());
-                        as.add(ss.getPointsummary());
-                        if(ss.getPointsummary()>=5){
+                        as.add(ss.getPointdifferent());
+                        as.add(ss.getPointsum());
+                        if(ss.getPointsum()>=5){
                             as.add("Passed");
                         }else{
                             as.add("Falsed");

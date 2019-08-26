@@ -215,13 +215,13 @@ public class frmmanageclass extends javax.swing.JFrame {
             return;
         }
         // luu vao clop hien tai
-        System.out.println(stu.getIdstudent()+" "+stu.getNamestudent());
+       // System.out.println(stu.getIdstudent()+" "+stu.getNamestudent());
         String nameclassin= cbxcodeclass.getSelectedItem().toString();
         String namemssv=cbxncodestudents.getSelectedItem().toString();
         
         // kiem tra ton tai 
         Frm0002BLL frm0002BLL = new Frm0002BLL();
-        if(frm0002BLL.ckeckExixtsStudent(nameclassin, namemssv)){
+        if(frm0002BLL.ckeckExixtsStudent(nameclass, namemssv)){
             labelstatus.setText("Mssv Contain in Class !");
             labelstatus.setVisible(true);
             return;

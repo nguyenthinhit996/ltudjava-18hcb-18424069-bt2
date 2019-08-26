@@ -114,6 +114,25 @@ public class StudentClassSubjectDAL {
         return ds;
     }
     
+    public List<StudentClassSubjectDTO> getAllClassSubjectDTOByIdStu(String id){
+        Session session=null;
+        List<StudentClassSubjectDTO> ds=null;
+        try{
+            session=HibernateUtil.getSessionFactory().openSession();
+            String hql="select d from StudentClassSubjectDTO d where d.student.idstudent = :id_class_sub";
+            Query query =session.createQuery(hql);
+            query.setString("id_class_sub",id);
+            ds=query.list();
+        }catch(HibernateException e){
+            logger.error("Error hibernate "+e.getLocalizedMessage());
+        }finally{
+            session.clear();
+            session.flush();
+            session.close();
+        }
+        return ds;
+    }
+    
     public boolean deleteStudentClassSubjectDTO(StudentClassSubjectDTO dto){
        Session session=HibernateUtil.getSessionFactory().openSession();
        Transaction transaction=null;

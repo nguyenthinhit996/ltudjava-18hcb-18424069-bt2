@@ -228,7 +228,7 @@ public class frm0002 extends javax.swing.JFrame {
                     .addComponent(labelviewstudentclass)
                     .addComponent(cbxstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))
         );
 
         jpannelviewscheduleclass.setBackground(new java.awt.Color(129, 211, 227));
@@ -417,7 +417,7 @@ public class frm0002 extends javax.swing.JFrame {
             .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelRootLayout.createSequentialGroup()
-                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
+                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpannelviewpointsubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -433,7 +433,7 @@ public class frm0002 extends javax.swing.JFrame {
                     .addComponent(username)
                     .addComponent(timecurrents))
                 .addGap(18, 18, 18)
-                .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+                .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE))
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRootLayout.createSequentialGroup()
                     .addGap(0, 100, Short.MAX_VALUE)
