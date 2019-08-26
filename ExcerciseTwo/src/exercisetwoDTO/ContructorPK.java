@@ -86,6 +86,8 @@ public class ContructorPK {
     public void setTimefinish(Timestamp timefinish) {
         this.timefinish = timefinish;
     }
+
+    
     
 }
  

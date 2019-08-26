@@ -88,17 +88,17 @@ public class ClassDAL {
        return status;
    }
    
-//   public static void main(String[] args){
-//       logger.info("start test class DAl ");
-//       ClassDTO cdto= new ClassDTO("19HB","lớp chất lượng cao đó nhal");
-//       int s=ClassDAL.updateOrsave(cdto);
-//       logger.debug("end test class DAl "+s);
-//       
-//       List<ClassDTO> ds=ClassDAL.getAllClass();
-//       for(int i=0;i<ds.size();i++){
-//           System.out.println(ds.get(i).getNameclass());
-//       }
-//        logger.debug("end test class DAl "+ds.size());
-//   }
+   public static void main(String[] args){
+       logger.info("start test class DAl ");
+       ClassDTO cdto= new ClassDTO("19HB","lớp chất lượng cao đó nhal");
+       int s=ClassDAL.updateOrsave(cdto);
+       logger.debug("end test class DAl "+s);
+       ClassDAL ClassDAL= new ClassDAL();
+       List<ClassDTO> ds=ClassDAL.getAllClass();
+       for(int i=0;i<ds.size();i++){
+           System.out.println(ds.get(i).getNameclass());
+       }
+        logger.debug("end test class DAl "+ds.size());
+   }
    
 }

@@ -13,24 +13,26 @@ public class RegistryPK {
     private String idregistrypk;
     private StudentDTO student;
     private SubjectDTO subject;
+    private ContructorPK contructorPK;
     private String namepoint;
     private int hopepoint;
     private String becauses;
 
-    public RegistryPK() {
+    public RegistryPK(String idregistrypk, StudentDTO student, SubjectDTO subject, ContructorPK contructorPK, String namepoint, int hopepoint, String becauses) {
+        this.idregistrypk = idregistrypk;
+        this.student = student;
+        this.subject = subject;
+        this.contructorPK = contructorPK;
+        this.namepoint = namepoint;
+        this.hopepoint = hopepoint;
+        this.becauses = becauses;
     }
 
     public RegistryPK(String idregistrypk) {
         this.idregistrypk = idregistrypk;
     }
 
-    public RegistryPK(String idregistrypk, StudentDTO student, SubjectDTO subject, String namepoint, int hopepoint, String becauses) {
-        this.idregistrypk = idregistrypk;
-        this.student = student;
-        this.subject = subject;
-        this.namepoint = namepoint;
-        this.hopepoint = hopepoint;
-        this.becauses = becauses;
+    public RegistryPK() {
     }
 
     /**
@@ -76,6 +78,20 @@ public class RegistryPK {
     }
 
     /**
+     * @return the contructorPK
+     */
+    public ContructorPK getContructorPK() {
+        return contructorPK;
+    }
+
+    /**
+     * @param contructorPK the contructorPK to set
+     */
+    public void setContructorPK(ContructorPK contructorPK) {
+        this.contructorPK = contructorPK;
+    }
+
+    /**
      * @return the namepoint
      */
     public String getNamepoint() {
@@ -116,5 +132,6 @@ public class RegistryPK {
     public void setBecauses(String becauses) {
         this.becauses = becauses;
     }
-    
+
 }
+    
