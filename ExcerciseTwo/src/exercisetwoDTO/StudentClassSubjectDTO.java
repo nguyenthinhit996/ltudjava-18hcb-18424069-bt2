@@ -16,7 +16,7 @@ public class StudentClassSubjectDTO {
     private int pointmid;
     private int pointfinal;
     private int pointdifferent;
-    private int pointsum;
+    private float pointsum;
 
     public StudentClassSubjectDTO() {
     }
@@ -25,7 +25,7 @@ public class StudentClassSubjectDTO {
         this.id_student_classsubject = id_student_classsubject;
     }
 
-    public StudentClassSubjectDTO(String id_student_classsubject, StudentDTO student, ClassSubjectDTO classSubjectDTO, int pointmid, int pointfinal, int pointdifferent, int pointsum) {
+    public StudentClassSubjectDTO(String id_student_classsubject, StudentDTO student, ClassSubjectDTO classSubjectDTO, int pointmid, int pointfinal, int pointdifferent, float pointsum) {
         this.id_student_classsubject = id_student_classsubject;
         this.student = student;
         this.classSubjectDTO = classSubjectDTO;
@@ -33,6 +33,16 @@ public class StudentClassSubjectDTO {
         this.pointfinal = pointfinal;
         this.pointdifferent = pointdifferent;
         this.pointsum = pointsum;
+    }
+    
+     public StudentClassSubjectDTO(String id_student_classsubject, StudentDTO student, ClassSubjectDTO classSubjectDTO) {
+        this.id_student_classsubject = id_student_classsubject;
+        this.student = student;
+        this.classSubjectDTO = classSubjectDTO;
+        this.pointmid = 0;
+        this.pointfinal = 0;
+        this.pointdifferent = 0;
+        this.pointsum = 0;
     }
 
     /**
@@ -122,14 +132,14 @@ public class StudentClassSubjectDTO {
     /**
      * @return the pointsum
      */
-    public int getPointsum() {
+    public float getPointsum() {
         return pointsum;
     }
 
     /**
      * @param pointsum the pointsum to set
      */
-    public void setPointsum(int pointsum) {
+    public void setPointsum(float pointsum) {
         this.pointsum = pointsum;
     }
     

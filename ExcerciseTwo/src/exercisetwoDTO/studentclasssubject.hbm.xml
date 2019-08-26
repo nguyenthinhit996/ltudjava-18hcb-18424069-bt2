@@ -40,33 +40,33 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="exercisetwoDTO.StudentClassSubjectDTO" table="db_student_class-subject">
+  <class name="exercisetwoDTO.StudentClassSubjectDTO" table="db_student_class_subject">
       <id name="id_student_classsubject" type="string">
-          <column length="30" name="iddb_student_class-subject"/>
+          <column length="30" name="iddb_student_class_subject"/>
       </id>
       <many-to-one class="exercisetwoDTO.StudentDTO" name="student" 
-        fetch="join" lazy="false" cascade="save-update,delete" >
-          <column length="10" name="nameidstudent"/>
+        fetch="join" lazy="false" cascade="save-update">
+          <column length="10" name="nameidstudent" unique="true"/>
       </many-to-one>
       <many-to-one class="exercisetwoDTO.ClassSubjectDTO" name="classSubjectDTO" 
-        fetch="join" lazy="false" cascade="save-update,delete" >
-          <column length="10" name="nameidclass_subject"/>
+        fetch="join" lazy="false" cascade="save-update">
+          <column length="10" name="nameidclass_subject" unique="true" />
       </many-to-one>
       
       <property name="pointmid" type="int">
-          <column length="11" name="pointmid"/>
+          <column length="11" name="pointmid" not-null="false"/>
       </property>
       
       <property name="pointfinal" type="int">
-          <column length="11" name="pointfinal"/>
+          <column length="11" name="pointfinal" not-null="false"/>
       </property>
       
       <property name="pointdifferent" type="int">
-          <column length="11" name="pointdifferent"/>
+          <column length="11" name="pointdifferent" not-null="false"/>
       </property>
       
-      <property name="pointsum" type="int">
-          <column length="11" name="pointsum"/>
+      <property name="pointsum" type="float">
+          <column length="11" name="pointsum" not-null="false"/>
       </property>
       
   </class>

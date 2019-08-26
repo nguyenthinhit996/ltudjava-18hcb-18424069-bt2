@@ -5,14 +5,18 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.BLL.Frm0002BLL;
-import excerciseone.DAL.SubjectsWithClassroomDAL;
-import excerciseone.DTO.ClassRoomDTO;
-import excerciseone.DTO.StudentsDTO;
-import excerciseone.DTO.SubjectsWithClassroomDTO;
+
+import excercisetwoBLL.Frm0002BLL;
+import excercisetwoDAL.ClassDAL;
+import excercisetwoDAL.StudentClassSubjectDAL;
+import excercisetwoDAL.StudentDAL;
+import exercisetwoDTO.ClassDTO;
+import exercisetwoDTO.ClassSubjectDTO;
+import exercisetwoDTO.StudentClassSubjectDTO;
+import exercisetwoDTO.StudentDTO;
 import java.awt.Color;
-import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -22,7 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 public class frmmanageclass extends javax.swing.JFrame {
     private String nameclass;
     private frm0002 frm0002s;
-    private StudentsDTO stu;
+    private StudentDTO stu;
     
     /**
      * Creates new form frmAddStudents
@@ -211,29 +215,27 @@ public class frmmanageclass extends javax.swing.JFrame {
             return;
         }
         // luu vao clop hien tai
-        System.out.println(stu.getMssv()+" "+stu.getName());
-        SubjectsWithClassroomDTO ds =null;
-        Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-        while(in.hasNext()){
-            SubjectsWithClassroomDTO ob=in.next();
-            String name=ob.getNameroom()+"_"+ob.getCodesubject();
-            if(name.equals(nameclass)){
-                ds= new SubjectsWithClassroomDTO(ob);
-                break;
-            }
+        System.out.println(stu.getIdstudent()+" "+stu.getNamestudent());
+        String nameclassin= cbxcodeclass.getSelectedItem().toString();
+        String namemssv=cbxncodestudents.getSelectedItem().toString();
+        
+        // kiem tra ton tai 
+        Frm0002BLL frm0002BLL = new Frm0002BLL();
+        if(frm0002BLL.ckeckExixtsStudent(nameclassin, namemssv)){
+            labelstatus.setText("Mssv Contain in Class !");
+            labelstatus.setVisible(true);
+            return;
         }
-        LinkedList<StudentsDTO> dss=ds.getCollectionstudent();
-        for(StudentsDTO i:dss){
-           if(i.getMssv().equals(stu.getMssv())){
-               labelstatus.setText("Mssv Contain in Class !");
-               labelstatus.setVisible(true);
-               return;
-           } 
-        }
-        dss.add(stu);
-        ds.setCollectionstudent(dss);
-        SubjectsWithClassroomDAL subdal= new SubjectsWithClassroomDAL();
-        if(subdal.writeSubjectWithStudent(ds)){
+        // get student from studentdto 
+        StudentDTO stu=frm0002BLL.getStudentById(namemssv);
+        
+        // get classSubjectDTO from classSubjectDTO
+        ClassSubjectDTO classSubjectDTO=frm0002BLL.getAllScheduleByIdClass(nameclassin).get(0);
+        
+        String id=stu.getIdstudent()+"_"+classSubjectDTO.getId_class_sub();
+        StudentClassSubjectDTO studentClassSubjectDTO= new StudentClassSubjectDTO(id, stu, classSubjectDTO);
+        StudentClassSubjectDAL studentClassSubjectDAL= new StudentClassSubjectDAL(); 
+        if(studentClassSubjectDAL.writeStuClassSubPoi2(studentClassSubjectDTO)==0){
             labelstatus.setText("Mssv add success !");
             labelstatus.setVisible(true);
             labelstatus.setForeground(Color.BLUE);
@@ -241,9 +243,9 @@ public class frmmanageclass extends javax.swing.JFrame {
             frm0002s.loadcbxstudentsubject();
             return ;
         }
-        labelstatus.setForeground(Color.red);
+         labelstatus.setForeground(Color.red);
          labelstatus.setText("Mssv Not add  !");
-         labelstatus.setVisible(true);
+         labelstatus.setVisible(true); 
     }//GEN-LAST:event_btnokaddstudentMouseClicked
 
     private void btncanceladdstudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncanceladdstudentMouseClicked
@@ -256,11 +258,11 @@ public class frmmanageclass extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         labelstatus.setVisible(false);
-        Frm0002BLL.getAllClassRoom();
-        LinkedList<ClassRoomDTO> colcr=Frm0002BLL.getColClassRoom();
+        ClassDAL classDAL= new ClassDAL();
+        List<ClassDTO> colcr=classDAL.getAllClass();
         cbxcodeclass.removeAllItems();
-        for(ClassRoomDTO i:colcr){
-            cbxcodeclass.addItem(i.getNameroom());
+        for(ClassDTO i:colcr){
+            cbxcodeclass.addItem(i.getIdclass());
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -272,16 +274,11 @@ public class frmmanageclass extends javax.swing.JFrame {
     private void cbxcodeclassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxcodeclassItemStateChanged
         // TODO add your handling code here:
         if(cbxcodeclass.getSelectedItem()!=null){
-            Frm0002BLL.getAllClassRoom();
-            LinkedList<ClassRoomDTO> colcr=Frm0002BLL.getColClassRoom();
+            Frm0002BLL frm0002BLL= new Frm0002BLL();
+            List<StudentDTO> colcr= frm0002BLL.getAllStudentByIdClass(cbxcodeclass.getSelectedItem().toString());
             cbxncodestudents.removeAllItems();
-            for(ClassRoomDTO i:colcr){
-                if(i.getNameroom().equals(cbxcodeclass.getSelectedItem().toString())){
-                    for(StudentsDTO j:i.getCollectionSTU()){
-                        cbxncodestudents.addItem(j.getMssv());
-                    }
-                    return;
-                }
+            for(StudentDTO i:colcr){  
+                cbxncodestudents.addItem(i.getIdstudent());
             }
         }
     }//GEN-LAST:event_cbxcodeclassItemStateChanged
@@ -289,20 +286,9 @@ public class frmmanageclass extends javax.swing.JFrame {
     private void cbxncodestudentsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxncodestudentsItemStateChanged
         // TODO add your handling code here:
         if(cbxncodestudents.getSelectedItem()!=null){
-            Frm0002BLL.getAllClassRoom();
-            LinkedList<ClassRoomDTO> colcr=Frm0002BLL.getColClassRoom();
-            for(ClassRoomDTO i:colcr){
-                if(i.getNameroom().equals(cbxcodeclass.getSelectedItem().toString())){
-                    for(StudentsDTO j:i.getCollectionSTU()){
-                        if(cbxncodestudents.getSelectedItem().toString().equals(j.getMssv())){
-                            stu= new StudentsDTO(
-                            j.getMssv(),j.getName(),j.getSex(),j.getIdentity());
-                            labelstudents.setText(j.getName());
-                            return;
-                        }
-                    }
-                }
-            }
+            StudentDAL studentDAL= new StudentDAL();
+            StudentDTO colcr=studentDAL.getStudentById(cbxncodestudents.getSelectedItem().toString());
+            labelstudents.setText(colcr.getNamestudent());
         }
     }//GEN-LAST:event_cbxncodestudentsItemStateChanged
 
@@ -389,14 +375,14 @@ public class frmmanageclass extends javax.swing.JFrame {
     /**
      * @return the stu
      */
-    public StudentsDTO getStu() {
+    public StudentDTO getStu() {
         return stu;
     }
 
     /**
      * @param stu the stu to set
      */
-    public void setStu(StudentsDTO stu) {
+    public void setStu(StudentDTO stu) {
         this.stu = stu;
     }
 

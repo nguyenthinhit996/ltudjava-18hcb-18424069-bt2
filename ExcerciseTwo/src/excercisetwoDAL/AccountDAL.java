@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -38,6 +39,7 @@ public class AccountDAL {
         catch(HibernateException e){
             logger.error(e);
         }finally{
+            session.clear();
             session.flush();
             session.close();
         }
@@ -46,4 +48,25 @@ public class AccountDAL {
         }
         return null;
     }
+    
+    public static int updateOrsave(AccountDTO cla){
+       Session session=HibernateUtil.getSessionFactory().openSession();
+       int status=0;
+       Transaction transaction=null;
+       try{
+           logger.info("start save: "+cla.getIdacc());
+           transaction= session.beginTransaction();
+           session.saveOrUpdate(cla);
+           transaction.commit();
+           logger.info("end save: "+cla.getIdacc());
+       }catch(HibernateException e){
+           logger.error(e.getMessage(), e);
+           status= 1;
+       }finally{
+           session.flush();
+           session.close();
+       }
+       logger.info("Ok udpate or save : ");
+       return status;
+   }
 }

@@ -46,7 +46,7 @@ Contributor(s):
             <generator class="assigned"/>
       </id>
       <property name="namesubject" type="string">
-          <column length="45" name="namesubject"/>
+          <column length="45" name="namesubject" not-null="false"/>
       </property>
   </class>
 </hibernate-mapping>

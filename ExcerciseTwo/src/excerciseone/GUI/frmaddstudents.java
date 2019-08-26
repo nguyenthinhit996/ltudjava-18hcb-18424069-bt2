@@ -7,10 +7,10 @@ package excerciseone.GUI;
 
  
 import excercisetwoBLL.Frm0002BLL;
+import excercisetwoDAL.StudentDAL;
 import exercisetwoDTO.ClassDTO;
 import exercisetwoDTO.StudentDTO;
 import java.awt.Color;
-import java.util.LinkedList;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
@@ -245,12 +245,10 @@ public class frmaddstudents extends javax.swing.JFrame {
         stu.setSex(ds[2]);
         stu.setIdentity(Integer.valueOf(ds[3]));
         stu.setClassdto(new ClassDTO(cbxallclassroom.getSelectedItem().toString()));
-        Frm0002BLL frm0002BLL = new Frm0002BLL();
-        LinkedList<StudentDTO> colClassRooms=(LinkedList<StudentDTO>) 
-        frm0002BLL.getAllStudentByIdClass(cbxallclassroom.getSelectedItem().toString());
-        colClassRooms.add(stu);
-        boolean res=frm0002BLL.writeStudent(colClassRooms);
-                if(res){
+         
+        StudentDAL studentDAL= new StudentDAL();
+        int res=studentDAL.writeStudent2(stu);
+                if(res ==0){
                     labelerror.setVisible(true);
                     labelerror.setText("Save success Student");
                     labelerror.setForeground(Color.BLUE);

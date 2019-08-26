@@ -28,7 +28,8 @@ import org.hibernate.Transaction;
 public class StudentDAL {
     private Logger logger= Logger.getLogger(this.getClass());
     
-    public void writeStudent(List<StudentDTO> lsd){
+    public int writeStudent(List<StudentDTO> lsd){
+        int status=0;
         Session session=null;
         try{
             session=HibernateUtil.getSessionFactory().openSession();
@@ -40,26 +41,32 @@ public class StudentDAL {
             }
             tran.commit();
         }catch(HibernateException e){
+             status=1;
             logger.error("Error hibernate "+e.getLocalizedMessage());
-            throw new HibernateException(e);
+           
         }finally{
+            session.clear();
            session.flush();
             session.close();
         }
+        return status;
     }
     
     public List<StudentDTO> getAllStudentByIdClass(String idclass){
         Session session=null;
         List<StudentDTO> ds=null;
         try{
-            session=HibernateUtil.getSessionFactory().getCurrentSession();
+            session=HibernateUtil.getSessionFactory().openSession();
+            session.flush();
             String hql="select d from StudentDTO d where d.classdto.idclass = :idclass";
             Query query =session.createQuery(hql);
             query.setString("idclass",idclass);
             ds=query.list();
+           
         }catch(HibernateException e){
             logger.error("Error hibernate "+e.getLocalizedMessage());
         }finally{
+            session.clear();
             session.flush();
             session.close();
         }
@@ -70,17 +77,40 @@ public class StudentDAL {
         Session session=null;
         List<StudentDTO> ds=null;
         try{
-            session=HibernateUtil.getSessionFactory().getCurrentSession();
-            String hql="select d from StudentDTO d";
+            session=HibernateUtil.getSessionFactory().openSession();
+            String hql="select d from StudentDTO d inner join fetch d.classdto";
             Query query =session.createQuery(hql);
             ds=query.list();
         }catch(HibernateException e){
             logger.error("Error hibernate "+e.getLocalizedMessage());
         }finally{
+            session.clear();
             session.flush();
             session.close();
         }
         return ds;
+    }
+    
+    public StudentDTO getStudentById(String id){
+        Session session=null;
+        List<StudentDTO> ds=null;
+        try{
+            session=HibernateUtil.getSessionFactory().openSession();
+            String hql="select d from StudentDTO d where d.idstudent=:id";
+            Query query =session.createQuery(hql);
+            query.setString("id", id);
+            ds=query.list();
+        }catch(HibernateException e){
+            logger.error("Error hibernate "+e.getLocalizedMessage());
+        }finally{
+            session.clear();
+            session.flush();
+            session.close();
+        }
+       if(ds.size()>0){
+            return ds.get(0);
+        }
+        return null;
     }
     
     public List<StudentDTO> readFromFile(String path){
@@ -96,11 +126,11 @@ public class StudentDAL {
                 while((line=buff.readLine())!=null){
                     
                     String [] content=line.split(",");
-                    if(content.length >=4){
+                    if(content.length ==4){
                         logger.info("start read student "+ line);
                         if(StringUtils.isNumeric(content[3])){
                          StudentDTO stu= new StudentDTO(content[0],content[1],content[2]
-                                 ,Integer.valueOf(content[3]), cla);
+                                 ,Long.valueOf(content[3]), cla);
                          colstu.add(stu);
                         }
                         logger.info("end read student "+ line);
@@ -115,5 +145,35 @@ public class StudentDAL {
             return null;
         }
         return colstu;
+    }
+    
+    public int writeStudent2(StudentDTO tem){
+        int status=0;
+        Session session=null;
+        try{
+            session=HibernateUtil.getSessionFactory().openSession();
+            Transaction tran=session.beginTransaction();
+            session.saveOrUpdate(tem);
+            tran.commit();
+        }catch(HibernateException e){
+            status=1;
+            logger.error("Error hibernate "+e.getLocalizedMessage());
+            throw new HibernateException(e);
+            
+        }finally{
+            session.clear();
+           session.flush();
+            session.close();
+        }
+        return status;
+    }
+    
+    public static void main(String [] args){
+        StudentDAL studentDAL = new StudentDAL();
+        List<StudentDTO>ds=studentDAL.getAllStudentByIdClass("18HCB");
+        for(StudentDTO i:ds){
+            System.out.println(i.getIdstudent());
+        }
+        
     }
 }

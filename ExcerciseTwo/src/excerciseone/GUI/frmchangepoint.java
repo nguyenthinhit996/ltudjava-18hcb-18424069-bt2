@@ -5,10 +5,9 @@
  */
 package excerciseone.GUI;
 
-import excerciseone.DAL.FileDAL;
-import excerciseone.DAL.StudentsWithPointDAL;
-import excerciseone.DAL.SubjectsWithClassroomDAL;
-import excerciseone.DTO.StudentsWithPointDTO;
+ 
+import excercisetwoDAL.StudentClassSubjectDAL;
+import exercisetwoDTO.StudentClassSubjectDTO;
 import java.awt.Color;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -20,7 +19,7 @@ import java.util.LinkedList;
 public class frmchangepoint extends javax.swing.JFrame {
     private frm0002 frm = new frm0002();
      private String nameclass;
-     private StudentsWithPointDTO stu;
+     private StudentClassSubjectDTO stu;
     /**
      * Creates new form frmAddStudents
      */
@@ -242,29 +241,16 @@ public class frmchangepoint extends javax.swing.JFrame {
 
     private void btnokchangepointMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnokchangepointMouseClicked
         // TODO add your handling code here:
-        String names=this.nameclass+"_P";
-        String path=FileDAL.getPathFile(names);
-        SubjectsWithClassroomDAL dal= new SubjectsWithClassroomDAL();
-        LinkedList<StudentsWithPointDTO> dss= dal.getPointSubjectsWithClassroomByPath(path);
-        stu.setPointmid(Integer.valueOf(cbxpointmid.getSelectedItem().toString()));
-        stu.setPointfinal(Integer.valueOf(cbxpointfinal.getSelectedItem().toString()));
-        stu.setPointdifference(Integer.valueOf(cbxpointdiff.getSelectedItem().toString()));
-        stu.setPointsummary(Integer.valueOf(labelpointsum.getText()));
-        if(dss != null){
-            Iterator<StudentsWithPointDTO> in= dss.iterator();
-            while(in.hasNext()){
-                StudentsWithPointDTO s=in.next();
-                if(s.getMssv().equals(stu.getMssv())){
-                    s.setPointmid(stu.getPointmid());
-                    s.setPointfinal(stu.getPointfinal());
-                    s.setPointdifference(stu.getPointdifference());
-                    s.setPointsummary(stu.getPointsummary());
-                    break;
-                }
-            }
-            StudentsWithPointDAL sdal= new StudentsWithPointDAL();
-            if(!sdal.writePointSubjectsWithClassroomByPath(dss, names)){
-                labelerror.setText("Error when import point");
+        if(stu != null){
+            stu.setPointmid(Integer.valueOf(cbxpointmid.getSelectedItem().toString()));
+            stu.setPointfinal(Integer.valueOf(cbxpointfinal.getSelectedItem().toString()));
+            stu.setPointdifferent(Integer.valueOf(cbxpointdiff.getSelectedItem().toString()));
+            stu.setPointsum(Float.valueOf(labelpointsum.getText()));
+            
+            StudentClassSubjectDAL studentClassSubjectDAL= new StudentClassSubjectDAL();
+            int status=studentClassSubjectDAL.writeStuClassSubPoi2(stu);     
+            if(status!=0){
+                labelerror.setText("Error when change point");
                 labelerror.setVisible(true);
                 labelerror.setForeground(Color.red);
             }else{
@@ -287,9 +273,9 @@ public class frmchangepoint extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        labelerror.setVisible(false);
-       labelmssv.setText(stu.getMssv());
-       labelfullname.setText(stu.getNamestudent());
+       labelerror.setVisible(false);
+       labelmssv.setText(stu.getStudent().getIdstudent());
+       labelfullname.setText(stu.getStudent().getNamestudent());
        cbxpointmid.removeAllItems();
        cbxpointfinal.removeAllItems();
        cbxpointdiff.removeAllItems();
@@ -300,7 +286,7 @@ public class frmchangepoint extends javax.swing.JFrame {
        }
        cbxpointmid.setSelectedItem(String.valueOf(stu.getPointmid()));
        cbxpointfinal.setSelectedItem(String.valueOf(stu.getPointfinal()));
-       cbxpointdiff.setSelectedItem(String.valueOf(stu.getPointdifference()));
+       cbxpointdiff.setSelectedItem(String.valueOf(stu.getPointdifferent()));
        float pmid=Integer.valueOf(cbxpointmid.getSelectedItem().toString())*30;
        float pmfi=Integer.valueOf(cbxpointfinal.getSelectedItem().toString())*60;
        float pmdiff=Integer.valueOf(cbxpointdiff.getSelectedItem().toString())*10;
@@ -410,14 +396,14 @@ public class frmchangepoint extends javax.swing.JFrame {
     /**
      * @return the stu
      */
-    public StudentsWithPointDTO getStu() {
+    public StudentClassSubjectDTO getStu() {
         return stu;
     }
 
     /**
      * @param stu the stu to set
      */
-    public void setStu(StudentsWithPointDTO stu) {
+    public void setStu(StudentClassSubjectDTO stu) {
         this.stu = stu;
     }
 

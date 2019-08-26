@@ -7,6 +7,11 @@
 package excerciseone.GUI;
 
  
+import excercisetwoBLL.Frm0002BLL;
+import excercisetwoDAL.ClassDAL;
+import excercisetwoDAL.StudentDAL;
+import exercisetwoDTO.ClassDTO;
+import exercisetwoDTO.StudentDTO;
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.Map;
@@ -236,15 +241,11 @@ public class frmchangestudy extends javax.swing.JFrame {
             cbxsexaddstudent.getSelectedItem().toString(),
             txtidentityaddstudent.getText()
         };
-        StudentsDTO stu= new StudentsDTO(ds);
-        Frm0002BLL.getAllClassRoom();
-        LinkedList<ClassRoomDTO> colClassRooms=Frm0002BLL.getColClassRoom();
-        for(ClassRoomDTO i:colClassRooms){
-            if(i.getNameroom().equals(cbxallclassroom.getSelectedItem().toString())){
-                i.getCollectionSTU().add(stu);
-                Frm0002BLL fr= new Frm0002BLL();
-                boolean ff= fr.writeStudentsClass(i);
-                if(ff){
+        ClassDAL classDAL = new ClassDAL();
+        ClassDTO dto= classDAL.getAllClassById(cbxallclassroom.getSelectedItem().toString());     
+        StudentDTO stu= new StudentDTO(ds[0],ds[1],ds[2],Long.valueOf(ds[3]),dto);
+        StudentDAL studentDAL= new StudentDAL();
+                if(studentDAL.writeStudent2(stu) ==0){
                     labelerror.setVisible(true);
                     labelerror.setText("Save success Student");
                     labelerror.setForeground(Color.BLUE);
@@ -256,8 +257,6 @@ public class frmchangestudy extends javax.swing.JFrame {
                     labelerror.setVisible(true);
                 }
                 return;
-            }
-        }
     }//GEN-LAST:event_btnokaddstudentMouseClicked
 
     private void btncanceladdstudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncanceladdstudentMouseClicked

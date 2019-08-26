@@ -15,7 +15,7 @@ public class StudentDTO implements Serializable,Comparable<StudentDTO>{
     private String idstudent;
     private String namestudent;
     private String sex;
-    private int identity;
+    private long identity;
     private ClassDTO classdto;
     
     public StudentDTO() {
@@ -25,7 +25,7 @@ public class StudentDTO implements Serializable,Comparable<StudentDTO>{
         this.idstudent = idstudent;
     }
 
-    public StudentDTO(String idstudent, String namestudent, String sex, int identity, ClassDTO classdto) {
+    public StudentDTO(String idstudent, String namestudent, String sex, long identity, ClassDTO classdto) {
         this.idstudent = idstudent;
         this.namestudent = namestudent;
         this.sex = sex;
@@ -80,14 +80,14 @@ public class StudentDTO implements Serializable,Comparable<StudentDTO>{
     /**
      * @return the identity
      */
-    public int getIdentity() {
+    public long getIdentity() {
         return identity;
     }
 
     /**
      * @param identity the identity to set
      */
-    public void setIdentity(int identity) {
+    public void setIdentity(long identity) {
         this.identity = identity;
     }
 

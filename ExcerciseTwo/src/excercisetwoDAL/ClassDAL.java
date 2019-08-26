@@ -24,7 +24,7 @@ public class ClassDAL {
     
    final static Logger logger = Logger.getLogger(ClassDAL.class);
     
-   public static List<ClassDTO> getAllClass(){
+   public List<ClassDTO> getAllClass(){
        Session session=HibernateUtil.getSessionFactory().openSession();
        List<ClassDTO> ds=null;
        
@@ -35,14 +35,40 @@ public class ClassDAL {
        }catch(HibernateError e){
            logger.error(e.getMessage(), e);
        }finally{
+           session.clear();
+           session.flush();
            session.close();
        }
        logger.info("Ok get all ds class : "+ds.toString());
        return ds;
    }
    
+   public ClassDTO getAllClassById(String s){
+       Session session=HibernateUtil.getSessionFactory().openSession();
+       List<ClassDTO> ds=null;
+       
+       try{
+           String hql="select cla from ClassDTO cla where cla.idclass = :id";
+           Query query=session.createQuery(hql);
+           query.setString("id", s);
+           ds=query.list();
+       }catch(HibernateError e){
+           logger.error(e.getMessage(), e);
+       }finally{
+           session.clear();
+           session.flush();
+           session.close();
+       }
+       logger.info("Ok get all ds class : "+ds.toString());
+       if(!ds.isEmpty()){
+           return ds.get(0);
+       }
+       return null;
+   }
+   
    public static int updateOrsave(ClassDTO cla){
        Session session=HibernateUtil.getSessionFactory().openSession();
+       int status=0;
        Transaction transaction=null;
        try{
            logger.info("start save: "+cla.getIdclass());
@@ -52,18 +78,19 @@ public class ClassDAL {
            logger.info("end save: "+cla.getIdclass());
        }catch(HibernateException e){
            logger.error(e.getMessage(), e);
-           return 0;
+           status= 1;
        }finally{
+           session.clear();
            session.flush();
            session.close();
        }
        logger.info("Ok udpate or save : ");
-       return 1;
+       return status;
    }
    
 //   public static void main(String[] args){
 //       logger.info("start test class DAl ");
-//       ClassDTO cdto= new ClassDTO("19HB","lớp chất lượng cao");
+//       ClassDTO cdto= new ClassDTO("19HB","lớp chất lượng cao đó nhal");
 //       int s=ClassDAL.updateOrsave(cdto);
 //       logger.debug("end test class DAl "+s);
 //       
@@ -73,5 +100,5 @@ public class ClassDAL {
 //       }
 //        logger.debug("end test class DAl "+ds.size());
 //   }
-//   
+   
 }

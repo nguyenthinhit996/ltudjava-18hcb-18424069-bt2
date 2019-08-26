@@ -45,17 +45,18 @@ Contributor(s):
           <column length="20" name="id_class_sub"/>
           <generator class="assigned"/>
       </id>
-      <many-to-one class="exercisetwoDTO.ClassDTO" name="classdto"
-        fetch="join" lazy="false" cascade="save-update,delete">
-          <column length="10" name="nameidclass" unique="true"/>
-      </many-to-one>
       
       <many-to-one class="exercisetwoDTO.SubjectDTO" name="subjectdto"
-        fetch="join" lazy="false" cascade="save-update,delete">
-          <column length="10" name="nameidsub" unique="true"/>
+        fetch="join" lazy="false" cascade="save-update">
+          <column length="10" name="nameidsub"  not-null="true"/>
       </many-to-one>
       <property name="room" type="string">
           <column length="45" name="room"/>
       </property>
+      
+        <property name="classdto" type="string">
+            <column length="10" name="nameidclass"/>
+        </property>
+      
   </class>
 </hibernate-mapping>

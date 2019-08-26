@@ -5,12 +5,15 @@
  */
 package excerciseone.GUI;
 
- 
-import exercisetwoDTO.AccountDTO;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import org.apache.commons.lang3.StringUtils;
+
+import exercisetwoDTO.AccountDTO;
+import excercisetwoBLL.Common;
+ 
+ 
 
 /**
  *
@@ -256,11 +259,11 @@ public class frmchangepassword extends javax.swing.JFrame {
         }
         if(txtpassnew.getText().equals(txtpassagain.getText())){
             Common com= new Common();
-            if(com.changePassword(get,txtpasswordold.getText(), txtpassnew.getText())){
+            if(com.changePassword(accountschool,txtpasswordold.getText(), txtpassnew.getText())){
                 messageChangepass.setForeground(Color.GREEN);
                 messageChangepass.setVisible(true);
                 messageChangepass.setText("Success change password");
-                getAccountschool().setPassword(txtpassnew.getText());
+                getAccountschool().setPass(txtpassnew.getText());
                 txtpassagain.setText("");
                 txtpassnew.setText("");
                 txtpasswordold.setText("");

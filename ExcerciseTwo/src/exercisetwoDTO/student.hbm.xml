@@ -51,13 +51,13 @@ Contributor(s):
       <property name="sex" type="string">
          <column name="sex" length="45"/>
       </property>
-      <property name="identity" type="int">
+      <property name="identity" type="long">
          <column name="identity" length="11"/>
       </property>
       
       <many-to-one class="exercisetwoDTO.ClassDTO" name="classdto"
-        fetch="join" lazy="false" cascade="save-update,delete">
-          <column length="10" name="idclass" not-null="true"/>
+        fetch="join" lazy="false" cascade="save-update" >
+          <column length="10" name="idclass" not-null="false"/>
       </many-to-one>
       
   </class>

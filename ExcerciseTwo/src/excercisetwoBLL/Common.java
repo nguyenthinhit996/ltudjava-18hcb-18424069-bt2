@@ -29,21 +29,16 @@ public class Common {
     
      
       public boolean changePassword(AccountDTO acc,String passold,String passnew){
-//        if(StringUtils.isNotBlank(passold) && StringUtils.isNotBlank(passnew)){
-//            if(acc.getPass().equals(passold)){
-//                AccountDAL accDAL= new AccountDAL();
-//                LinkedList<AccountSchoolDTO> in=accDAL.getAllAccount();
-//                for(int i=0;i<in.size();i++){
-//                    if(acc.getNamelogin().equals(in.get(i).getNamelogin()) 
-//                            && acc.getPassword().equals(in.get(i).getPassword())){
-//                        in.get(i).setPassword(passnew);
-//                    }
-//                }
-//                
-//                accDAL.writeAllAccount(in);
-//                return true;
-//            }
-//        }
+        if(StringUtils.isNotBlank(passold) && StringUtils.isNotBlank(passnew)){
+            if(acc.getPass().equals(passold)){
+                acc.setPass(passnew);
+                int in=AccountDAL.updateOrsave(acc);
+                if(in==0){
+                    return true;
+                }
+                return false;
+            }
+        }
         return false;
     }
     

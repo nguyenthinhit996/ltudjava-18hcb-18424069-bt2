@@ -11,7 +11,7 @@ package exercisetwoDTO;
  */
 public class ClassSubjectDTO {
     private String id_class_sub;
-    private ClassDTO classdto;
+    private String classdto;
     private SubjectDTO subjectdto;
     private String room;
 
@@ -22,7 +22,7 @@ public class ClassSubjectDTO {
         this.id_class_sub = id_class_sub;
     }
 
-    public ClassSubjectDTO(String id_class_sub, ClassDTO classdto, SubjectDTO subjectdto, String room) {
+    public ClassSubjectDTO(String id_class_sub, String classdto, SubjectDTO subjectdto, String room) {
         this.id_class_sub = id_class_sub;
         this.classdto = classdto;
         this.subjectdto = subjectdto;
@@ -46,14 +46,14 @@ public class ClassSubjectDTO {
     /**
      * @return the classdto
      */
-    public ClassDTO getClassdto() {
+    public String getClassdto() {
         return classdto;
     }
 
     /**
      * @param classdto the classdto to set
      */
-    public void setClassdto(ClassDTO classdto) {
+    public void setClassdto(String classdto) {
         this.classdto = classdto;
     }
 

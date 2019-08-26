@@ -9,24 +9,22 @@ package excerciseone.GUI;
 import excercisetwoBLL.Common;
 import excercisetwoBLL.FileDAL;
 import excercisetwoBLL.Frm0002BLL;
+import excercisetwoDAL.ClassDAL;
+import excercisetwoDAL.ClassSubjectDAL;
+import excercisetwoDAL.StudentDAL;
 import exercisetwoDTO.AccountDTO;
+import exercisetwoDTO.ClassDTO;
 import exercisetwoDTO.ClassSubjectDTO;
+import exercisetwoDTO.StudentClassSubjectDTO;
 import exercisetwoDTO.StudentDTO;
-import exercisetwoDTO.SubjectDTO;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.Collections;
-import java.util.HashMap;
+import static java.lang.System.in;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -225,12 +223,12 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewstudentclassLayout.setVerticalGroup(
             jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewstudentclassLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(42, 42, 42)
                 .addGroup(jpannelviewstudentclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewstudentclass)
                     .addComponent(cbxstudentclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
         );
 
         jpannelviewscheduleclass.setBackground(new java.awt.Color(129, 211, 227));
@@ -258,17 +256,17 @@ public class frm0002 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
         );
         jpannelviewscheduleclassLayout.setVerticalGroup(
             jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewscheduleclassLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpannelviewscheduleclassLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelviewscheduleclass1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jpannelviewpointsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -322,14 +320,14 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewpointsubjectLayout.setVerticalGroup(
             jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewpointsubjectLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(50, 50, 50)
                 .addGroup(jpannelviewpointsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelviewpointsubject)
                     .addComponent(cbxpointsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelxacxuatdau)
-                    .addComponent(btnchangepoint))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                    .addComponent(btnchangepoint)
+                    .addComponent(labelxacxuatdau))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
         );
 
         jpannelviewstudentsubject.setBackground(new java.awt.Color(129, 211, 227));
@@ -390,7 +388,7 @@ public class frm0002 extends javax.swing.JFrame {
         jpannelviewstudentsubjectLayout.setVerticalGroup(
             jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpannelviewstudentsubjectLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(48, 48, 48)
                 .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpannelviewstudentsubjectLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnoutclass)
@@ -399,7 +397,7 @@ public class frm0002 extends javax.swing.JFrame {
                         .addComponent(labelviewstudentsubject)
                         .addComponent(cbxstudentsubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelRootLayout = new javax.swing.GroupLayout(jPanelRoot);
@@ -419,7 +417,7 @@ public class frm0002 extends javax.swing.JFrame {
             .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelRootLayout.createSequentialGroup()
-                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
+                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
                     .addContainerGap()))
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpannelviewpointsubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -435,11 +433,11 @@ public class frm0002 extends javax.swing.JFrame {
                     .addComponent(username)
                     .addComponent(timecurrents))
                 .addGap(18, 18, 18)
-                .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
+                .addComponent(jpannelviewstudentclass, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRootLayout.createSequentialGroup()
-                    .addGap(0, 46, Short.MAX_VALUE)
-                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 100, Short.MAX_VALUE)
+                    .addComponent(jpannelviewscheduleclass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(jPanelRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRootLayout.createSequentialGroup()
                     .addGap(0, 44, Short.MAX_VALUE)
@@ -564,7 +562,7 @@ public class frm0002 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jPanelRoot, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
 
         pack();
@@ -675,7 +673,7 @@ public class frm0002 extends javax.swing.JFrame {
            }
            Frm0002BLL bll0002= new Frm0002BLL();
            List<StudentDTO> in =bll0002.importStudentsClass(selectedFile.getPath());
-           if(in == null){
+           if(in== null){
                //error
                frmerror er= new frmerror();
                er.setStrError(" Has Error when import Students CLass !");
@@ -712,7 +710,7 @@ public class frm0002 extends javax.swing.JFrame {
     public void loadstudentclass(){
         if(cbxstudentclass.getSelectedItem() !=  null){
            Frm0002BLL bll0002= new Frm0002BLL();
-           List<StudentDTO> in =bll0002.getAllStudent();
+           List<StudentDTO> in =bll0002.getAllStudentByIdClass(cbxstudentclass.getSelectedItem().toString());
            getIntoTableStudentClass(in);
            getjScrollPane2().getVerticalScrollBar().setValue(0);
         }
@@ -794,7 +792,6 @@ public class frm0002 extends javax.swing.JFrame {
         jFileChooserImport.setApproveButtonText("Open");
         int status = jFileChooserImport.showSaveDialog(jFileChooserImport);
         
-        boolean statusimporterr=false;
         if (status == JFileChooser.APPROVE_OPTION) {
           File selectedFile = jFileChooserImport.getSelectedFile();
           System.out.println(selectedFile.getPath());
@@ -806,22 +803,29 @@ public class frm0002 extends javax.swing.JFrame {
                return ;
            }
            Frm0002BLL bll0002= new Frm0002BLL();
-           statusimporterr =bll0002.importScheduleClass(selectedFile.getPath());
-           if(statusimporterr){
+           List<ClassSubjectDTO> statusimport =bll0002.importScheduleClass(selectedFile.getPath());
+           if(statusimport == null){
                //error
                frmerror er= new frmerror();
                er.setStrError(" Has Error when import Schedule CLass !");
                er.setVisible(true);
            }else{
-               // view student class
-               Frm0002BLL frm0002bll = new Frm0002BLL();
-               Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+//               // view student class
+//               Frm0002BLL frm0002bll = new Frm0002BLL();
+//               Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+//                getCbxscheduleclass().removeAllItems();
+//               while(in.hasNext()){
+//                    ClassRoomDTO ob=in.next();                   
+//                    getIntoTableStudentClass(ob.getCollectionSTU());
+//                    getCbxscheduleclass().addItem(ob.getNameroom());
+//               }
+
+                Iterator in=  statusimport.iterator();
                 getCbxscheduleclass().removeAllItems();
-               while(in.hasNext()){
-                    ClassRoomDTO ob=in.next();                   
-                    getIntoTableStudentClass(ob.getCollectionSTU());
-                    getCbxscheduleclass().addItem(ob.getNameroom());
-               }
+                    ClassSubjectDTO dss= (ClassSubjectDTO) in.next();
+                    getCbxscheduleclass().addItem(dss.getClassdto());
+                
+                
                //All Students Class:
                 getLabelviewscheduleclass().setText("SChedule is Imported:");
                  getjScrollPane2().getVerticalScrollBar().setValue(0);
@@ -838,74 +842,38 @@ public class frm0002 extends javax.swing.JFrame {
     private void cbxstudentsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxstudentsubjectItemStateChanged
         // TODO add your handling code here:
          if(cbxstudentsubject.getSelectedItem() !=  null){
-            Frm0002BLL.getAllSubPointStu();
+            Frm0002BLL dsfrm0002 =new Frm0002BLL();
             String nameclass=getCbxstudentsubject().getSelectedItem().toString();
-            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-            while(in.hasNext()){
-                try {
-                    SubjectsWithClassroomDTO ob=in.next();
-                    String name=ob.getNameroom()+"_"+ob.getCodesubject();
-                    String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
-                    if(name.equals(nameclass)){
-                         
-                        getIntoTableSubjectStudents(ob.getCollectionstudent());
-                    }
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            List<StudentDTO>ds= dsfrm0002.getAllStudenbyIdClassSub(nameclass);
+            getIntoTableSubjectStudents(ds);
         }
     }//GEN-LAST:event_cbxstudentsubjectItemStateChanged
 
     public void loadcbxstudentsubject(){
-        if(getCbxstudentsubject().getSelectedItem() !=  null){
+          if(cbxstudentsubject.getSelectedItem() !=  null){
+            Frm0002BLL dsfrm0002 =new Frm0002BLL();
             String nameclass=getCbxstudentsubject().getSelectedItem().toString();
-            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-            while(in.hasNext()){
-                try {
-                    SubjectsWithClassroomDTO ob=in.next();
-                    String name=ob.getNameroom()+"_"+ob.getCodesubject();
-                    String aa= new String( ob.getNamesubject().getBytes("UTF-8"), "UTF-8");
-                    if(name.equals(nameclass)){
-                        
-                        getIntoTableSubjectStudents(ob.getCollectionstudent());
-                    }
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(frm0002.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            List<StudentDTO>ds= dsfrm0002.getAllStudenbyIdClassSub(nameclass);
+            getIntoTableSubjectStudents(ds);
         }
     }
     
     private void cbxpointsubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxpointsubjectItemStateChanged
         // TODO add your handling code here:
        if(cbxpointsubject.getSelectedItem() !=  null){
-            String nameclass=cbxpointsubject.getSelectedItem().toString();
-            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-            while(in.hasNext()){
-                SubjectsWithClassroomDTO ob=in.next();
-                String name=ob.getNameroom()+"_"+ob.getCodesubject();
-                if(name.equals(nameclass)){
-                     
-                    getIntoTablePSubjectStudents(ob.getCollectionpoint());
-                }
-            }
+            String nameclass=cbxpointsubject.getSelectedItem().toString(); 
+            Frm0002BLL dsfrm0002 =new Frm0002BLL();       
+            List<StudentClassSubjectDTO>ds= dsfrm0002.getAllStudenbyIdClassSub2(nameclass);
+            getIntoTablePSubjectStudents(ds);
         }
     }//GEN-LAST:event_cbxpointsubjectItemStateChanged
 
     public void loadcbxpointsubjectItemStateChanged(){
          if(cbxpointsubject.getSelectedItem() !=  null){
-             Frm0002BLL.getAllSubPointStu();
-            String nameclass=cbxpointsubject.getSelectedItem().toString();
-            Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-            while(in.hasNext()){
-                SubjectsWithClassroomDTO ob=in.next();
-                String name=ob.getNameroom()+"_"+ob.getCodesubject();
-                if(name.equals(nameclass)){
-                     
-                    getIntoTablePSubjectStudents(ob.getCollectionpoint());
-                }
-            }
+            String nameclass=cbxpointsubject.getSelectedItem().toString(); 
+            Frm0002BLL dsfrm0002 =new Frm0002BLL();       
+            List<StudentClassSubjectDTO>ds= dsfrm0002.getAllStudenbyIdClassSub2(nameclass);
+            getIntoTablePSubjectStudents(ds);
         }
     }
     
@@ -919,39 +887,54 @@ public class frm0002 extends javax.swing.JFrame {
            er.setStrError("Not choose any row yet !");
            er.setVisible(true);
        }else{
-           String valuegetMssv = tablestudentsubject.getModel().getValueAt(r,1).toString();
-           
-           SubjectsWithClassroomDTO ds =null;
-           Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-           while(in.hasNext()){
-             SubjectsWithClassroomDTO ob=in.next();
-             String name=ob.getNameroom()+"_"+ob.getCodesubject();
-             if(name.equals(cbxstudentsubject.getSelectedItem().toString())){
-                ds= new SubjectsWithClassroomDTO(ob);
-                break;
-             }
-            }
-            LinkedList<StudentsDTO> dss=ds.getCollectionstudent();
-            int indexdelete=0;
-            for(StudentsDTO i:dss){
-               if(i.getMssv().equals(valuegetMssv)){
-                   break;
-               }
-               indexdelete++;
-            }
-            System.out.println(dss.remove(indexdelete));
-            ds.setCollectionstudent(dss);
-            SubjectsWithClassroomDAL subdal= new SubjectsWithClassroomDAL();
-            if(subdal.writeSubjectWithStudent(ds)){
+//          String valuegetMssv = tablestudentsubject.getModel().getValueAt(r,1).toString();
+//           SubjectsWithClassroomDTO ds =null;
+//           Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
+//           while(in.hasNext()){
+//             SubjectsWithClassroomDTO ob=in.next();
+//             String name=ob.getNameroom()+"_"+ob.getCodesubject();
+//             if(name.equals(cbxstudentsubject.getSelectedItem().toString())){
+//                ds= new SubjectsWithClassroomDTO(ob);
+//                break;
+//             }
+//            }
+//            LinkedList<StudentsDTO> dss=ds.getCollectionstudent();
+//            int indexdelete=0;
+//            for(StudentsDTO i:dss){
+//               if(i.getMssv().equals(valuegetMssv)){
+//                   break;
+//               }
+//               indexdelete++;
+//            }
+//            System.out.println(dss.remove(indexdelete));
+//            ds.setCollectionstudent(dss);
+//            SubjectsWithClassroomDAL subdal= new SubjectsWithClassroomDAL();
+//            if(subdal.writeSubjectWithStudent(ds)){
+//                er.getLabelerrorroot().setForeground(Color.BLUE);
+//                er.setStrError(" Moved student Mssv: "+ valuegetMssv);
+//                er.setVisible(true);
+//                loadcbxstudentsubject();
+//                return ;
+//            }
+//           er.getLabelerrorroot().setForeground(Color.red);
+//           er.setStrError("Not remove Mssv !"+valuegetMssv);
+//           er.setVisible(true); 
+            String mssv = tablestudentsubject.getModel().getValueAt(r,1).toString();
+            String nameclass=cbxstudentsubject.getSelectedItem().toString();
+            String id=mssv+"_"+nameclass;
+            StudentClassSubjectDTO studentClassSubjectDTO= new StudentClassSubjectDTO(id);
+            Frm0002BLL frm0002 =new Frm0002BLL(); 
+            if(frm0002.deteleStudentClassSubjectDTO(studentClassSubjectDTO)){
                 er.getLabelerrorroot().setForeground(Color.BLUE);
-                er.setStrError(" Moved student Mssv: "+ valuegetMssv);
+                er.setStrError(" Moved student Mssv: "+ mssv);
                 er.setVisible(true);
                 loadcbxstudentsubject();
                 return ;
             }
-           er.getLabelerrorroot().setForeground(Color.red);
-           er.setStrError("Not remove Mssv !"+valuegetMssv);
+            er.getLabelerrorroot().setForeground(Color.red);
+           er.setStrError("Not remove Mssv !"+mssv);
            er.setVisible(true); 
+           
        }
     }//GEN-LAST:event_btnoutclassMouseClicked
 
@@ -977,7 +960,6 @@ public class frm0002 extends javax.swing.JFrame {
         jFileChooserImport.setApproveButtonText("Open");
         int status = jFileChooserImport.showSaveDialog(jFileChooserImport);
         
-        boolean statusimporterr=false;
         if (status == JFileChooser.APPROVE_OPTION) {
           File selectedFile = jFileChooserImport.getSelectedFile();
           System.out.println(selectedFile.getPath());
@@ -989,22 +971,18 @@ public class frm0002 extends javax.swing.JFrame {
                return ;
            }
            Frm0002BLL bll0002= new Frm0002BLL();
-           statusimporterr =bll0002.importPointClass(selectedFile.getPath());
-           if(!statusimporterr){
+           List<StudentClassSubjectDTO> statusimporterr =bll0002.importPointClass(selectedFile.getPath());
+           if(statusimporterr == null){
                //error
                frmerror er= new frmerror();
                er.setStrError(" Has Error when import Point CLass !");
                er.setVisible(true);
            }else{
                // view student class
-               Frm0002BLL frm0002bll = new Frm0002BLL();
-               Iterator<SubjectsWithClassroomDTO> in= Frm0002BLL.getColSubPointStuent().iterator();
-               cbxpointsubject.removeAllItems();
-               while(in.hasNext()){
-                    SubjectsWithClassroomDTO ob=in.next();                   
-                    getIntoTablePSubjectStudents(ob.getCollectionpoint());
-                    cbxpointsubject.addItem(ob.getNameroom()+"_"+ob.getCodesubject());
-               }
+                cbxpointsubject.removeAllItems();       
+                cbxpointsubject.addItem(statusimporterr.get(0).getClassSubjectDTO().getId_class_sub());
+                //getIntoTablePSubjectStudents(statusimporterr);
+                
                //All Students Class:
                 getLabelviewscheduleclass().setText("Point is Imported:");
                  getjScrollPane2().getVerticalScrollBar().setValue(0);
@@ -1035,8 +1013,15 @@ public class frm0002 extends javax.swing.JFrame {
            String pointfinal = tablepointsubject.getModel().getValueAt(r,4).toString();
            String pointdifference = tablepointsubject.getModel().getValueAt(r,5).toString();
            String pointsum = tablepointsubject.getModel().getValueAt(r,6).toString();
-           StudentsWithPointDTO po=
-           new StudentsWithPointDTO(mssvstu,namestu,
+           
+           ClassSubjectDAL classSubjectDAL= new ClassSubjectDAL();
+           ClassSubjectDTO classSubjectDTO=classSubjectDAL.getClassSubjectDTOById(nameclass);
+           StudentDAL studentDAL = new StudentDAL();
+            StudentDTO student= studentDAL.getStudentById(mssvstu);
+           
+            String id=student.getIdstudent()+"_"+classSubjectDTO.getId_class_sub();
+           StudentClassSubjectDTO po=
+           new StudentClassSubjectDTO(id,student,classSubjectDTO,
             Integer.valueOf(pointmid),
             Integer.valueOf(pointfinal),
             Integer.valueOf(pointdifference),
@@ -1144,25 +1129,29 @@ public class frm0002 extends javax.swing.JFrame {
 
     void createCombox(){
         // set student class, scheduler class
-        Frm0002BLL.getAllClassRoom();
-        Frm0002BLL.getAllSubPointStu();
-        Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
-        Iterator<SubjectsWithClassroomDTO> ins= Frm0002BLL.getColSubPointStuent().iterator();
+//        Frm0002BLL.getAllClassRoom();
+//        Frm0002BLL.getAllSubPointStu();
+//        Iterator<ClassRoomDTO> in= Frm0002BLL.getColClassRoom().iterator();
+//        Iterator<SubjectsWithClassroomDTO> ins= Frm0002BLL.getColSubPointStuent().iterator();
+
+        ClassDAL classDAL = new ClassDAL();
+        List<ClassDTO> dsclass = classDAL.getAllClass();
+
+        ClassSubjectDAL csdal= new ClassSubjectDAL();
+        List<ClassSubjectDTO> dssubclass=csdal.getAllSchedule();
+        
         
         getCbxstudentclass().removeAllItems();
         getCbxscheduleclass().removeAllItems();
         getCbxstudentsubject().removeAllItems();
         getCbxpointsubject().removeAllItems();
-        while(in.hasNext()){
-            ClassRoomDTO ob=in.next(); 
-            getCbxstudentclass().addItem(ob.getNameroom());
-            getCbxscheduleclass().addItem(ob.getNameroom());
+        for(ClassDTO i:dsclass){
+            getCbxstudentclass().addItem(i.getIdclass());
+            getCbxscheduleclass().addItem(i.getIdclass());
         }
-        while(ins.hasNext()){
-            SubjectsWithClassroomDTO ob=ins.next();
-            String name=ob.getNameroom()+"_"+ob.getCodesubject();
-            getCbxstudentsubject().addItem(name);
-            getCbxpointsubject().addItem(name);
+        for(ClassSubjectDTO i : dssubclass){
+            getCbxstudentsubject().addItem(i.getId_class_sub());
+            getCbxpointsubject().addItem(i.getId_class_sub());
         }
     }
     
@@ -1176,7 +1165,7 @@ public class frm0002 extends javax.swing.JFrame {
                 StudentDTO stu=in.next();
                 Vector vt=new Vector();
                 vt.add(i++);
-                vt.add(stu.getIdentity());
+                vt.add(stu.getIdstudent());
                 vt.add(stu.getNamestudent());
                 vt.add(stu.getSex());
                 vt.add(stu.getIdentity());
@@ -1205,43 +1194,45 @@ public class frm0002 extends javax.swing.JFrame {
         }
     }
     
-    void getIntoTableSubjectStudents(LinkedList<StudentsDTO> col){
+    void getIntoTableSubjectStudents(List<StudentDTO> col){
         DefaultTableModel model=(DefaultTableModel) getTablestudentsubject().getModel();
         model.setRowCount(0);
         if(col!=null){
-        Iterator<StudentsDTO> in= col.iterator();
+        Iterator<StudentDTO> in= col.iterator();
         int i=1;
         while(in.hasNext()){
-            StudentsDTO stu=in.next();
+            StudentDTO stu=in.next();
             Vector vt=new Vector();
             vt.add(i++);
-            vt.add(stu.getMssv());
-            vt.add(stu.getName());
+            vt.add(stu.getIdstudent());
+            vt.add(stu.getNamestudent());
             vt.add(stu.getSex());
             vt.add(stu.getIdentity());
             model.addRow(vt);
+            System.out.println(i);
         }
         }
     }
     
-    void getIntoTablePSubjectStudents(LinkedList<StudentsWithPointDTO> col){
+    void getIntoTablePSubjectStudents(List<StudentClassSubjectDTO> col){
         DefaultTableModel model=(DefaultTableModel) tablepointsubject.getModel();
         model.setRowCount(0);
         if(col.size()>0){
-            Iterator<StudentsWithPointDTO> in= col.iterator();
+            Iterator<StudentClassSubjectDTO> in= col.iterator();
             int i=1;
             int per=0;
             while(in.hasNext()){
-                StudentsWithPointDTO stu=in.next();
+                StudentClassSubjectDTO stu=in.next();
                 Vector vt=new Vector();
                 vt.add(i++);
-                vt.add(stu.getMssv());
-                vt.add(stu.getNamestudent());
+                System.out.println("-- "+i);
+                vt.add(stu.getStudent().getIdstudent());
+                vt.add(stu.getStudent().getNamestudent());
                 vt.add(stu.getPointmid());
                 vt.add(stu.getPointfinal());
-                vt.add(stu.getPointdifference());
-                vt.add(stu.getPointsummary());
-                if(stu.getPointsummary() >= 5){
+                vt.add(stu.getPointdifferent());
+                vt.add(stu.getPointsum());
+                if(stu.getPointsum() >= 5){
                     vt.add("Passed");
                     per=per+1;
                 }else{
